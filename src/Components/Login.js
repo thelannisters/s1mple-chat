@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import '../App.css'
 import { Nav, NavItem } from 'reactstrap';
+import {Home} from './Home';
 // import GoogleButton from 'react-google-button' // optional
 
-export const LoginPage = ({ firebase, auth }) => (
-  
+export const LoginPage = ({ firebase, auth }) => {
+  return(
   <div>
-
         <Nav>
           <NavItem>
             {isEmpty(auth)? 
@@ -31,15 +31,15 @@ export const LoginPage = ({ firebase, auth }) => (
           ? <span>Not Authed</span>
           : 
           <div>
-            Login information:
-            <div>{auth.email}</div>
-            <div>{auth.displayName}</div>
+            <Home email ={auth.email} displayName ={auth.displayName}/>
+            <div>
+              </div>
           </div>
       }
       </div>
       </div>
-)
-
+      )
+}
 LoginPage.propTypes = {
   firebase: PropTypes.shape({
     login: PropTypes.func.isRequired
@@ -48,6 +48,7 @@ LoginPage.propTypes = {
 }
 
 export default compose(
-  firebaseConnect(), // withFirebase can also be used
-  connect(({ firebase: { auth } }) => ({ auth }))
+  firebaseConnect(), 
+  connect(
+    ({ firebase: { auth } } ) => ({ auth }))
 )(LoginPage)
