@@ -1,19 +1,20 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import './App.css';
-import Login from './Components/Login';
-import createStoreWithFirebase from './store/index';
-import rootReducer from './reducers/rootReducer';
-
-const initialState = {}
-const store = createStoreWithFirebase(rootReducer, initialState)
+import Main from './Components/Main/Main';
+import Sidebar from './Components/Sidebar/Sidebar';
+import {connect} from 'react-redux';
 
 
-const App = () => (
-  <Provider store={store}>
-    <Login />
-  </Provider>
-);
+const App = () => {
+    return (
+        <div className="App">
+        <Sidebar />
+        <Main />
+      </div>
+        
+    )
+    
+}
 
 
 export default App;
